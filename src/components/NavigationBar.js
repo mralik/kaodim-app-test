@@ -1,7 +1,9 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { Nav, Navbar } from 'react-bootstrap';
+import {Link} from 'react-router-dom';
+import {Nav, Navbar} from 'react-bootstrap';
 import styled from 'styled-components';
+import logo from '../assets/logo.png';
+
 
 const Styles = styled.div`
   .navbar {
@@ -13,32 +15,34 @@ const Styles = styled.div`
       color: white;
     }
   }
+  
+  .navbar-brand {
+  img {
+  height: 30px;
+    width: 120px;
+  }
 `;
 
-export const NavigationBar = () => (
+export const NavigationBar = (props) => (
+
     <Styles>
         <Navbar expand="lg">
-            <Navbar.Brand href="/">Code Life</Navbar.Brand>
-            <Navbar.Toggle aria-controls="basic-navbar-nav" />
+            <Navbar.Brand href="/"><img src={logo} alt="logo"/></Navbar.Brand>
+            <Navbar.Toggle aria-controls="basic-navbar-nav"/>
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="ml-auto">
-                    <Nav.Item>
+                    <Nav.Item className='span'>
                         <Nav.Link>
-                            <Link to="/">Home</Link>
+                            <Link to="/profile" >Profile</Link>
                         </Nav.Link>
                     </Nav.Item>
-                    <Nav.Item>
+                    <Nav.Item  className='span'>
                         <Nav.Link>
-                            <Link to="/about">About</Link>
-                        </Nav.Link>
-                    </Nav.Item>
-                    <Nav.Item>
-                        <Nav.Link>
-                            <Link to="/contact">Contact</Link>
+                            <Link to="/form" >Dynamic Form</Link>
                         </Nav.Link>
                     </Nav.Item>
                 </Nav>
             </Navbar.Collapse>
         </Navbar>
-    </Styles >
+    </Styles>
 )
