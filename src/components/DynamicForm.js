@@ -1,14 +1,12 @@
 import React from "react";
-import ReactDOM from "react-dom"
 import "../App.css";
-import data from '../assets/questions.json'
 
 export default class DynamicForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             isShow: true,
-            questions: [],
+            questions: props.formData.questions,
             index: 0,
             disabledNext: false,
             disabledPrev: true,
@@ -20,21 +18,14 @@ export default class DynamicForm extends React.Component {
     }
 
 
-    getDerivedStateFromProps() {
-        this.setState({question: data.questions})
-
-    }
     componentDidMount() {
     }
 
 
     render() {
-        let title = this.props.title || "Dynamic Form";
-        const elem = data.questions;
-        console.log('re', elem)
-        let {selectedIndex, questions, isShow, index, disabledNext, disabledPrev, questionTitle} = this.state;
-        const question =  this.state.questions[index]
-        console.log('question', question)
+        let {title} = this.props.formData;
+        let {index, disabledNext, disabledPrev} = this.state;
+        const question =  this.state.questions ? this.state.questions[index] : null
             return (
                 <div className="form-page d-flex align-items-center">
                     <div className="container">
@@ -45,8 +36,7 @@ export default class DynamicForm extends React.Component {
                                 </div>
                                 <div
                                     className="card-body p-5 d-flex flex-column justify-content-center align-items-center">
-                                    {/*<p>{questions[selectedIndex].prompt}</p>*/}
-                                    {/*<p>{question.prompt}</p>*/}
+                                    <p>{question.prompt}</p>
                                     <div className="input-wrap">
                                         <input/>
 
@@ -72,7 +62,6 @@ export default class DynamicForm extends React.Component {
 
 
     togglePrev(e) {
-        console.log('event', e)
         let index = this.state.index - 1;
         let disabledPrev = (index === 0);
 
@@ -80,7 +69,6 @@ export default class DynamicForm extends React.Component {
     }
 
     toggleNext(e) {
-        console.log('event', e)
         let index = this.state.index + 1;
         let disabledNext = index === (this.state.questions.length - 1);
 
