@@ -5,15 +5,11 @@ export default class DynamicForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            isShow: true,
             questions: props.formData.questions,
             index: 0,
             disabledNext: false,
-            disabledPrev: true,
-            questionTitle: 'd'
+            disabledPrev: true
         }
-
-
 
     }
 
